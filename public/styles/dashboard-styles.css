@@ -1,0 +1,42 @@
+.empty-dash-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 237px !important;
+  margin-top: calc(50vh - 237px / 2) !important;
+}
+
+.empty-dash-container > h2 {
+  font-size: 1.25rem !important;
+  margin-top: 27.5px !important;
+}
+
+.empty-dash-container > p {
+  font-size: 1rem !important;
+  margin-top: 7px !important;
+}
+
+.empty-dash-container > button {
+  margin-top: 28px !important;
+  width: 176px !important;
+  height: 38px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.empty-dash-container > button > span {
+  margin-left: 10.47px !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+}
+
+.modal-dialog {
+  width: 396px !important;
+  left: calc(50vw - 396px / 2);
+}
+
+.modal-content {
+  height: 356px;
+}
