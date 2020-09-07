@@ -8,18 +8,74 @@ html {
   font-size: 16px !important
 }
 
+body {
+  background-color: #F7F7F7;
+}
+
 .btn-main {
   background: #EA5252 0% 0% no-repeat padding-box !important;
   border: none !important;
-  border-radius: 6px;
+  border-radius: 6px !important;
   opacity: 1 !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .btn-outline {
   background: #fff 0% 0% no-repeat padding-box !important;
   border: 1px solid #EA5252 !important;
-  border-radius: 6px;
+  border-radius: 6px !important;
   opacity: 1 !important;
-  color: #EA5252;
+  color: #EA5252 !important;
+}
+
+.app-navigation-menu {
+  height: 62px;
+  background-color: #fff;
+  padding: 0 60px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 6px #00000026;
+}
+
+.navigation-profile {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.navigation-profile > div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navigation-profile > button {
+  margin-right: 51px !important;
+  width: 176px !important;
+  height: 38px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.navigation-profile > button > span {
+  margin-left: 10.47px !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+}
+
+.avatar-image {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.arrow-menu {
+  margin: 0 8px 0 14px !important;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  padding: 10px !important;
 }

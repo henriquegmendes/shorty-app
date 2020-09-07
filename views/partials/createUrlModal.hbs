@@ -2,8 +2,27 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
-        <button type="button" class="btn-outline" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn-main">Criar URL</button>
+        <form class="needs-validation" action="/url/create" method="post">
+          <h2>Criar nova URL</h2>
+
+          <div class="modal-field">
+            <label for="redirectUrl">URL de redirecionamento</label>
+            <input class="modal-input" type="text" name="redirectUrl" id="redirectUrl" placeholder="Insira a URL de redirecionamento" required>
+          </div>
+
+          <div class="modal-field">
+            <label for="expirationDate">Data de Expiração</label>
+            <div>
+              <img src="/images/date-form-icon.svg" alt="" srcset="">
+              <input class="modal-input" type="text" name="expirationDate" id="expirationDate" placeholder="Defina a data de expiração" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+            </div>
+          </div>
+
+          <div class="modal-action-buttons">
+            <button type="button" class="btn-outline" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn-main">Criar URL</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
