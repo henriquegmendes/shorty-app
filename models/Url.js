@@ -6,6 +6,7 @@ const { Schema } = mongoose;
 const urlSchema = new Schema({
   _id: { type: String, default: shortid.generate },
   redirectUrl: { type: String, required: true },
+  shortUrl: { type: String, required: true },
   expirationDateMs: { type: Number, required: true },
 },
 {

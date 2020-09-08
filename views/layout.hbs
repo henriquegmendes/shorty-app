@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
   <link rel="stylesheet" href="/styles/main-styles.css">
+  <link rel="stylesheet" href="/styles/button-styles.css">
+  <link rel="stylesheet" href="/styles/nav-bar-styles.css">
+  <link rel="stylesheet" href="/styles/dashboard-styles.css">
+
   <title>Shorty</title>
 </head>
 <body>
-  {{#if loggedUser}}
-    <nav class="app-navigation-menu">
+  <nav class="app-navigation-menu">
+    <div>
+      <img src="/images/shorty-logo.svg" alt="shorty-app-main-logo">
+    </div>
+
+    <div class="navigation-profile">
+      <button class="btn-main" type="button" data-toggle="modal" data-target="#createUrlModal">
+        {{>createUrlButtonContent}}
+      </button>
+
       <div>
-        <img src="/images/shorty-logo.svg" alt="shorty-app-main-logo">
-      </div>
+        <img class="avatar-image" src="/images/default-avatar.png" alt="user-profile-avatar">
 
-      <div class="navigation-profile">
-        <button class="btn-main" type="button" data-toggle="modal" data-target="#createUrlModal">
-          {{>createUrlButtonContent}}
-        </button>
-
-        <div>
-          <img class="avatar-image" src="/images/default-avatar.png" alt="user-profile-avatar">
-
-          <div class="dropdown">
-            <img class="arrow-menu" src="/images/down-arrow.svg" alt="down-arrow-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{>navBarMenuDropDown}}
-          </div>
-
-          <span>Henrique Guazzelli Mendes</span>
+        <div class="dropdown">
+          <img class="arrow-menu" src="/images/down-arrow.svg" alt="down-arrow-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{>navBarMenuDropDown}}
         </div>
+
+        <span>Henrique Guazzelli Mendes</span>
       </div>
-    </nav>
-  {{/if}}
+    </div>
+  </nav>
   
   {{{body}}}
 

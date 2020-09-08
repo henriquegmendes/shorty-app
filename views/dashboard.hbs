@@ -1,10 +1,26 @@
-<link rel="stylesheet" href="styles/dashboard-styles.css">
-
 {{>createUrlModal}}
 
 <main>
   {{#if data}}
+    <h2>Lista de URLs</h2>
 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">URL encurtada</th>
+          <th scope="col">URL de redirecionamento</th>
+          <th scope="col">Data de criação</th>
+          <th scope="col">Data de expiração</th>
+          <th scope="col">Status da url</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+          {{>urlTableRows this}}
+        {{/each}}
+      </tbody>
+    </table>
   {{else}}
     <div class="empty-dash-container">
       <img src="/images/url-icon-big.svg" alt="url icon image big size">

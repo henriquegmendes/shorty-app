@@ -6,6 +6,14 @@
           <h2>Criar nova URL</h2>
 
           <div class="modal-field">
+            <label for="protocol">Protocolo</label>
+            <select class="modal-input" name="protocol" id="protocol" placeholder="Procolo" required>
+              <option value="http://">HTTP</option>
+              <option value="https://">HTTPS</option>
+            </select>
+          </div>
+
+          <div class="modal-field">
             <label for="redirectUrl">URL de redirecionamento</label>
             <input class="modal-input" type="text" name="redirectUrl" id="redirectUrl" placeholder="Insira a URL de redirecionamento" required>
           </div>
