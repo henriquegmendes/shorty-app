@@ -1,0 +1,68 @@
+.modal-dialog {
+  width: 396px !important;
+  left: calc(50vw - 396px / 2);
+}
+
+.modal-content {
+  height: 440px;
+  padding: 24px 28px !important;
+}
+
+.modal-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 25px !important;
+}
+
+.modal-action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-action-buttons button {
+  height: 48px !important;
+  width:  156px !important;
+  margin-top: 20px !important;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px !important;
+}
+
+.modal-field > label {
+  font-size: 0.75rem;
+  margin-bottom: 5px !important;
+}
+
+.modal-input {
+  width: 100% !important;
+  height: 48px !important;
+}
+
+.modal-field div {
+  border: 1px solid #919497 !important;
+  border-radius: 6px !important;
+  opacity: 1 !important;
+  display: flex;
+  padding-right: 3px !important;
+}
+
+.modal-field img {
+  margin: 0 10px !important;
+}
+
+.modal-field > input,
+.modal-field > select {
+  border: 1px solid #919497 !important;
+  border-radius: 6px !important;
+  opacity: 1 !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+.modal-field > div > input {
+  border: none;
+  flex: 1
+}

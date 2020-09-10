@@ -1,11 +1,21 @@
 <tr>
   <td>
-    <img src="/images/copy.svg" alt="copy-icon">
-    {{this.shortUrl}}
+    <div class="copy-icon-container">
+      <img data-clipboard-text="{{this.shortUrl}}" id="{{this._id}}" class="copy-icon" src="/images/copy.svg" alt="copy-icon">
+      {{>copyLinkToast this}}
+    </div>
+    <span >
+      {{this.shortUrl}}
+    </span>
   </td>
   <td>{{this.redirectUrl}}</td>
   <td>{{this.createdAt}}</td>
   <td>{{this.expirationDateMs}}</td>
   <td>Ativa</td>
-  <td><img src="/images/more.svg" alt="more-actions-icon"></td>
+  <td>
+    <div class="dropdown">
+      <img src="/images/more.svg" alt="more-actions-icon" id="dropdownUrlActions-{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{>urlActionsDropdown this}}
+    </div>
+  </td>
 </tr>
