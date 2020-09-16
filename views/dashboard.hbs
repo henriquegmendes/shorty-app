@@ -9,14 +9,14 @@
     </button>
 
     <div>
-      <img class="avatar-image" src="https://res.cloudinary.com/dobzwgcvl/image/upload/v1599596161/shorty-app/default-avatar.jpg" alt="user-profile-avatar">
+      <img class="avatar-image" src="{{data.imageAvatar}}" alt="user-profile-avatar">
 
       <div class="dropdown">
         <img class="arrow-menu" src="/images/down-arrow.svg" alt="down-arrow-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{>navBarMenuDropDown}}
       </div>
 
-      <span>Henrique Guazzelli Mendes</span>
+      <span>{{data.fullName}}</span>
     </div>
   </div>
 </nav>
@@ -59,4 +59,40 @@
   </div>
 </div>
 
-<h1>Hello!!!!</h1>
+<main>
+  {{#if data}}
+    <div class="info-dash-container">
+      <h2>Lista de URLs</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">URL encurtada</th>
+            <th scope="col">URL de redirecionamento</th>
+            <th scope="col">Data de criação</th>
+            <th scope="col">Data de expiração</th>
+            <th scope="col">Status da url</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          {{#each data}}
+            {{>urlTableRows this}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <div class="empty-dash-container">
+      <img src="/images/url-icon-big.svg" alt="url icon image big size">
+
+      <h2>Ainda não existe URLs criadas.</h2>
+
+      <p>Para criar uma nova URL clique no botão abaixo.</p>
+
+      <button class="btn-main" type="button" data-toggle="modal" data-target="#createUrlModal">
+        {{>createUrlButtonContent}}
+      </button>
+    </div>
+  {{/if}}
+</main>
