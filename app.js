@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const appRoutes = require('./routes/appRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -22,5 +23,6 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', appRoutes);
+app.use('/', authRoutes);
 
 app.listen(3000, () => console.log('App running on PORT 3000'));
