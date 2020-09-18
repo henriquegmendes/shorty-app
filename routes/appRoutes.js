@@ -4,18 +4,28 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-router.get('/dashboard', async (request, response) => {
+router.use((req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect('/login?sessionExpired=true');
+
+    return;
+  }
+
+  next();
+});
+
+router.get('/dashboard', async (req, res) => {
   try {
-    const data = await Url.find({ owner: '5f6152c92bbf27178936d42e' }).populate('owner');
+    const data = await Url.find({ owner: req.session.currentUser._id });
   
-    response.render('dashboard', { data, owner: data[0].owner });
+    res.render('dashboard', { data, loggedUser: req.session.currentUser });
   } catch (error) {
     console.log(error);
   }
 });
 
-router.post('/url/create', async (request, response) => {
-  const { protocol, redirectUrl, expirationDate } = request.body;
+router.post('/url/create', async (req, res) => {
+  const { protocol, redirectUrl, expirationDate } = req.body;
   
   const dateToArray = expirationDate.split('-');
 
@@ -25,14 +35,14 @@ router.post('/url/create', async (request, response) => {
     redirectUrl: protocol + redirectUrl,
     shortUrl: 'http://localhost:3000/s',
     expirationDateMs: dateMs,
-    owner:'5f6152c92bbf27178936d42e',
+    owner: req.session.currentUser._id,
   });
 
   newUrl.shortUrl += '/' + newUrl._id;
 
   await newUrl.save();
 
-  response.redirect('/dashboard');
+  res.redirect('/dashboard');
 });
 
 module.exports = router;

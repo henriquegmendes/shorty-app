@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../models/User');
-const generateEncryptedPassword = require('../utils/passwordManager');
+const { generateEncryptedPassword, verifyPassword } = require('../utils/passwordManager');
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.get('/signup', (req, res) => {
   res.render('auth-views/signup');
 });
 
-const verifyData = async (req, res) => {
+const verifySignupData = async (req, res) => {
   const { fullName, email, cpf, password, confirmationPassword } = req.body;
 
   if (!fullName || !email || !cpf || !password || !confirmationPassword ) {
@@ -67,7 +67,7 @@ router.post('/signup', async (req, res) => {
   try {
     const { fullName, email, cpf, password } = req.body;
     
-    const idDataValid = await verifyData(req, res);
+    const idDataValid = await verifySignupData(req, res);
 
     if (!idDataValid) {
       return;
@@ -80,14 +80,85 @@ router.post('/signup', async (req, res) => {
       password: await generateEncryptedPassword(password),
     });
 
-    console.log(newUser)
-
     await newUser.save();
 
     res.redirect('/login');
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get('/login', (req, res) => {
+  res.render('auth-views/login', req.query);
+});
+
+const verifyLoginData = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password ) {
+    const errors = {
+      emailError: !email ? 'Campo email obrigatório' : undefined,
+      passwordError: !password ? 'Campo senha obrigatório' : undefined,
+    };
+
+    res.render('auth-views/login', errors);
+
+    return false;
+  }
+
+  if (password.length < 6) {
+    const errors = {
+      passwordError: password.length < 6 ? 'Sua senha deve ter no mínimo 6 dígitos' : undefined,
+    };
+
+    res.render('auth-views/login', errors);
+
+    return false;
+  }
+
+  const userExists = await User.findOne({ email });
+
+  if (!userExists) {
+    res.render('auth-views/login', { errorMessage: 'Usuário ou senha incorretos. Por favor tente novamente' });
+
+    return false;
+  }
+
+  const isPasswordMatch = verifyPassword(password, userExists.password);
+
+  if (!isPasswordMatch) {
+    res.render('auth-views/login', { errorMessage: 'Usuário ou senha incorretos. Por favor tente novamente' });
+
+    return false;
+  }
+
+  return userExists;
+};
+
+router.post('/login', async (req, res) => {
+  try {
+    const userAuthenticated = await verifyLoginData(req, res);
+
+    if (!userAuthenticated) {
+      return;
+    }
+
+    const userAuthCopy = JSON.parse(JSON.stringify(userAuthenticated));
+
+    delete userAuthCopy.password;
+
+    req.session.currentUser = userAuthCopy;
+
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get('/logout',  (req, res) => {
+  req.session.destroy();
+
+  res.redirect('/login');
 });
 
 module.exports = router;

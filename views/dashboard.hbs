@@ -9,14 +9,14 @@
     </button>
 
     <div>
-      <img class="avatar-image" src="{{data.imageAvatar}}" alt="user-profile-avatar">
+      <img class="avatar-image" src="{{loggedUser.imageAvatar}}" alt="user-profile-avatar">
 
       <div class="dropdown">
         <img class="arrow-menu" src="/images/down-arrow.svg" alt="down-arrow-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{>navBarMenuDropDown}}
       </div>
 
-      <span>{{data.fullName}}</span>
+      <span>{{loggedUser.fullName}}</span>
     </div>
   </div>
 </nav>
